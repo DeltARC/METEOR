@@ -24,7 +24,7 @@ var playerImage = new Image();
 playerImage.src = "vaisseau.png"; // Mettez le chemin correct vers votre image
 
 // Charger le son du tir
-var shootSound = new Audio("laser.mp4"); // Mettez le chemin correct vers votre fichier audio
+var shootSound = new Audio("laser.mp4"); // son tir
 
 // Variables pour les projectiles
 var projectiles = [];
