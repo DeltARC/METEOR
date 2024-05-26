@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+html { 
+  background: url(fond.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+.an{
+  animation-name: flo;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  position: relative;
+  bottom: 80px;
+  left:20px;
+
+}
+@keyframes flo{
+  50%{
+    transform: translateY(50px);
+  }
+}
+
+.bouton {
+  color: white;
+  background-color: #AC21BC;
+  font-size: 40px;
+  font-family: Magneto;
+  width: 250px;
+  height: 90px;
+  position: center-right;
+  border-color: #FF339F;
+  transition: all 150ms ease-in-out;
+  &:hover {
+    box-shadow: 0 0 10px 0 #FF339F inset, 0 0 10px 4px #FF339F;
+  }
+}
+
+.bouton3 {
+  color: white;
+  background-color: #AC21BC;
+  font-size: 12px;
+  font-family: Magneto;
+  width: 100px;
+  height: 36px;
+  border-color: #FF339F;
+  transition: all 150ms ease-in-out;
+  &:hover {
+    box-shadow: 0 0 10px 0 #FF339F inset, 0 0 10px 4px #FF339F;
+  }
+}
