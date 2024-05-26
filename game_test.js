@@ -184,7 +184,6 @@ function update() {
     // Dessiner le score
     drawScore();
 
-    // Appel récursif de la fonction update
     requestAnimationFrame(update);
 }
 
@@ -211,41 +210,40 @@ window.addEventListener("keyup", function(event) {
     delete keys[event.keyCode];
 });
 
-// Fonction pour créer un nouveau projectile
+
 function shootProjectile() {
     var projectile = {
         x: player.x + player.width, // Positionnez le projectile à droite du joueur
         y: player.y + player.height / 2, // Position verticale au milieu du joueur
     };
-    projectiles.push(projectile); // Ajoutez le projectile au tableau des projectiles
-    // Jouer le son du tir
+    projectiles.push(projectile); 
+   
     shootSound.play();
 }
 
-// Fonction pour gérer le Game Over
+
 function gameOver() {
-    // Arrêter le compteur de score
+   
     clearInterval(scoreInterval);
 
-    // Mettre à jour le meilleur score si nécessaire
+    
     if (score > bestScore) {
         bestScore = score;
     }
 
-    // Réinitialiser le score à 0
+  
     score = 0;
 
 
-    // Réinitialiser la position du joueur
+  
     resetPlayerPosition();
     
-    // Afficher un message "Game Over"
     ctx.fillStyle = "red";
     ctx.font = "30px Arial";
     ctx.fillText("Game Over", canvas.width / 2 - 80, canvas.height / 2);
 }
 
-// Fonction pour réinitialiser la position du joueur
+
 function resetPlayerPosition() {
     player.x = 50;
     player.y = 50;
