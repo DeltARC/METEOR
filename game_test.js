@@ -1,8 +1,8 @@
-// Obtention du canvas
+
 	var canvas = document.getElementById("gameCanvas");
 	var ctx = canvas.getContext("2d");
 
-// Variables du jeu
+
 var player = {
     x: 50,
     y: 50,
@@ -11,25 +11,24 @@ var player = {
     speed: 7.5,
 };
 
-var score = 0; // Variable pour stocker le score
-var bestScore = 0; // Variable pour stocker le meilleur score
+var score = 0; 
+var bestScore = 0; 
 
-// Démarrez le compteur de score dès le début du jeu
+
 var scoreInterval = setInterval(function() {
-    score++; // Incrémentez le score de 1 à chaque seconde
+    score++;
 }, 1000);
 
-// Charger l'image du joueur
+
 var playerImage = new Image();
-playerImage.src = "vaisseau.png"; // Mettez le chemin correct vers votre image
+playerImage.src = "vaisseau.png"; 
 
-// Charger le son du tir
-var shootSound = new Audio("laser.mp4"); // son tir
 
-// Variables pour les projectiles
+var shootSound = new Audio("laser.mp4"); 
+
 var projectiles = [];
 
-// Structure des ennemis
+
 var enemies = [];
 
 function Enemy(x, y, width, height, speed) {
@@ -40,13 +39,13 @@ function Enemy(x, y, width, height, speed) {
     this.speed = speed;
 }
 
-// Fonction pour dessiner un ennemi
+
 function drawEnemy(enemy) {
-    ctx.fillStyle = "#ff0000"; // Couleur verte pour les ennemis
+    ctx.fillStyle = "#ff0000";
     ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
 }
 
-// Fonction pour générer des ennemis
+
 function generateEnemies() {
     var enemyWidth = 50;
     var enemyHeight = 50;
@@ -57,13 +56,13 @@ function generateEnemies() {
     enemies.push(newEnemy);
 }
 
-// Fonction de mise à jour des ennemis
+
 function updateEnemies() {
     for (var i = 0; i < enemies.length; i++) {
         var enemy = enemies[i];
-        enemy.x -= enemy.speed; // Faites avancer l'ennemi vers la gauche
+        enemy.x -= enemy.speed;
 
-        // Supprimer l'ennemi s'il sort du canvas
+
         if (enemy.x + enemy.width < 0) {
             enemies.splice(i, 1);
             i--;
@@ -71,14 +70,14 @@ function updateEnemies() {
     }
 }
 
-// Dessiner tous les ennemis
+
 function drawEnemies() {
     for (var i = 0; i < enemies.length; i++) {
         drawEnemy(enemies[i]);
     }
 }
 
-// Mise à jour des collisions avec les ennemis
+
 function checkCollisions() {
     for (var i = 0; i < projectiles.length; i++) {
         var projectile = projectiles[i];
@@ -90,34 +89,33 @@ function checkCollisions() {
                 projectile.y < enemy.y + enemy.height &&
                 projectile.y + 5 > enemy.y
             ) {
-                // Collision détectée, supprimer l'ennemi et le projectile
+                
                 enemies.splice(j, 1);
                 projectiles.splice(i, 1);
-                i--; // Décrémentez i pour éviter de sauter un projectile
-                break; // Sortez de la boucle interne, car un projectile ne peut toucher qu'un ennemi à la fois
+                i--; 
+                break; 
             }
         }
     }
 }
 
-// Fonction pour dessiner le joueur
+
 function drawPlayer() {
     ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
 }
 
-// Fonction pour dessiner un projectile
+
 function drawProjectile(projectile) {
-    ctx.fillStyle = "#ff0000"; // Couleur rouge pour le projectile
-    ctx.fillRect(projectile.x, projectile.y, 10, 5); // Dessiner un simple rectangle pour le projectile
+    ctx.fillRect(projectile.x, projectile.y, 10, 5);
 }
 
-// Fonction de mise à jour des projectiles
+
 function updateProjectiles() {
     for (var i = 0; i < projectiles.length; i++) {
         var projectile = projectiles[i];
-        projectile.x += 10; // Faites avancer le projectile vers la droite
+        projectile.x += 10;
 
-        // Supprimer le projectile s'il sort du canvas
+       
         if (projectile.x > canvas.width) {
             projectiles.splice(i, 1);
             i--;
@@ -125,9 +123,9 @@ function updateProjectiles() {
     }
 }
 
-// Fonction de mise à jour du jeu
+
 function update() {
-    // Déplacement du joueur
+  
     if (keys[38]) { // Haut
         player.y -= player.speed;
     }
@@ -237,7 +235,6 @@ function gameOver() {
     // Réinitialiser le score à 0
     score = 0;
 
-    // ... Votre code existant ici ...
 
     // Réinitialiser la position du joueur
     resetPlayerPosition();
